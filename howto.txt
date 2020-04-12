@@ -1,0 +1,2 @@
+how to feed data to POST request:
+	URL endpoint: https:/.../queue?customer_data="{"name": "Test_customer", "customer_id": "123", "service": "sample_service"}"
