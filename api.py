@@ -5,6 +5,7 @@ from flask import request
 from flask_restplus import Resource, Api
 import requests
 import sqlite3
+from flask_cors import CORS
 import pandas as pd
 from datetime import datetime
 import json
@@ -20,6 +21,7 @@ GENERAL_INFO='E'
 ATM='F'
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 conn = sqlite3.connect('data.db')
@@ -35,7 +37,7 @@ conn.close()
 @api.route('/queue', methods=['POST'])
 @api.doc(params={'queue_data': 'sample :- {\"name\": \"blah\", \"customer_id\": \"blah\", \"service\": \"nameofservice\"} \n services =[accounts, loans, exchange, atm, cheques, general]'})
 @api.doc(params={'customer_data': 'ex.{\"name\": \"blah\", \"email\": \"blah\", \"password\": \"blah\"}'})
-@api.doc(params={'feedback_data': 'ex.{\"customer_id\": \"blah\", \"feedback\": \"blah\"}'})
+@api.doc(params={'feedback_data': 'ex.{\"customer_id\": \"blah\", \"feedback\": \"Poor/Okay/Good/Excellent/Outstanding\"}'})
 
 class Collections(Resource):
 	
@@ -140,20 +142,100 @@ class Collections(Resource):
 			return 200
 
 
-# @api.route('/queue', methods=['POST'])
-# @api.doc(params={'customer_data': 'ex.{\"name\": \"blah\", \"customer_id\": \"blah\", \"service\": \"nameofservice\"}'})
-# class Collections(Resource):
-# 	def post(self):
-# 		data = request.args.get('data')
-# 		print(data)
-# 		jsondata = json.loads(data)
-# 		print(jsondata)
+@api.route('/queue/<ticket>', methods=['DELETE'])
+class delete(Resource):
+	def delete(self, ticket):
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
 
-# 		return 200
-# 		#conn = sqlite3.connect('data.db')
-# 		#cur = conn.cursor()
-# 		#conn.commit()
-# 		#conn.close()
+		cur.execute('select * from dynamic_queue where ticket ='+ticket)
+		result = cur.fetchall()
+
+		if result == []:
+			task={
+				"Error": "No entry with Id "+ticket+" Found!"
+			}
+			return task, 404
+
+		cur.execute('Delete from dynamic_queue where ticket ='+ticket)
+		conn.commit()
+		conn.close()
+
+		return 200
+
+@api.route('/show/alltickets', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
+
+		cur.execute('select * from dynamic_queue')
+		result = cur.fetchall()
+
+		if result == []:
+			task={
+				"Error": "empty queue"
+			}
+			return task, 404
+
+		tickets = []
+		for i in result:
+			task = {
+						"name": str(i[1]),
+						"service": str(i[3]),
+						"ticket": str(i[4]),
+						"counter": str(i[5])
+					}
+			tickets.append(task)
+		#conn.commit()
+		res = {"alltickets":tickets}
+		conn.close()
+
+		return res, 200
+
+
+@api.route('/show/feedback', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
+
+		
+		cur.execute('select * from feedbacks')
+		result = cur.fetchall()
+		print(result)
+		if result == []:
+			task={
+				"Error": "No Feedbacks Received Yet."
+			}
+			return task, 404
+
+		cur.execute('select * from feedbacks where feedback="Poor"')
+		result = cur.fetchall()
+		poor = len(result)
+		cur.execute('select * from feedbacks where feedback="Okay"')
+		result = cur.fetchall()
+		okay = len(result)
+		cur.execute('select * from feedbacks where feedback="Good"')
+		result = cur.fetchall()
+		good = len(result)
+		cur.execute('select * from feedbacks where feedback="Excellent"')
+		result = cur.fetchall()
+		excellent = len(result)
+		cur.execute('select * from feedbacks where feedback="Outstanding"')
+		result = cur.fetchall()
+		outstanding = len(result)
+
+		res = {
+			"Poor" : str(poor),
+			"Okay" : str(okay),
+			"Good" : str(good),
+			"Excellent" : str(excellent),
+			"Outstanding" : str(outstanding)
+			}
+		conn.close()
+
+		return res, 200
 
 def GenerateCustomerId():
 	return randint(10000, 99999)

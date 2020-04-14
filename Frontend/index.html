@@ -100,7 +100,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">People in queue</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div id="no.people" class="h5 mb-0 font-weight-bold text-gray-800"></div>
                     </div>
                     <div class="col-auto">
                       <i class="far fa-users fa-2x text-gray-300"></i>
@@ -112,266 +112,13 @@
           
           </div>
 
-          <div class="row">      
+          <div class="row" id="user_card_mainrow">      
 
-          <div class="card card-body shadow h-100 py-1 mb-4 ml-3 mr-3" style="max-height:275px;line-height:3em;overflow:scroll;padding:5px;">
+          <div class="card card-body shadow h-100 py-1 mb-4 ml-3 mr-3" id="user_card" style="max-height:275px;line-height:3em;overflow:scroll;padding:5px;">
 
-            <div class="row">  
+            <div class="row" id="user_card_row">  
 
-            <!-- user -->
-             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-success text-uppercase mb-1">Customer 2</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-warning text-uppercase mb-1">Customer 1</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a id="note" class="dropdown-item" onclick="myFunction()">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim smith</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 134</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-warning text-uppercase mb-1">Customer 2</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a class="dropdown-item" href="#">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Ray jensen</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Loan</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 135</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-
-             <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="text-s font-weight-bold text-warning text-uppercase mb-1">Customer 3</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">                
-                      <a class="dropdown-item" href="#">Next Customer</a>
-                      <a class="dropdown-item" href="#">Add note</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-s h7 mb-0 text-gray-800">Name: Kim john sey</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Type of service: Other</div>
-                      <div class="text-s h7 mb-0 text-gray-800">Ticket Number: 136</div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>       
         </div>
         </div>
  
@@ -466,7 +213,6 @@
   <!-- End of Page Wrapper -->
 
 
-
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -491,12 +237,39 @@
   <script src="js/demo/chart-pie-demo.js"></script>
 
 <script>
+
+var tix = document.getElementById('user_card');
+var row = document.getElementById('user_card_row');
+var mainrow = document.getElementById('user_card_mainrow');
+
+var newItems = document.createElement('div');
+
+fetch('http://0.0.0.0:5000/show/alltickets')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    var no_people = document.getElementById('no.people');
+    no_people.innerHTML = ""+data['alltickets'].length;
+    for (i = 0; i < data['alltickets'].length; i++) { 
+      var entry = data['alltickets']
+      var newItems = document.createElement('div');
+      newItems.innerHTML = '<div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-warning shadow h-100 py-2" style="width:290px"><div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="text-s font-weight-bold text-warning text-uppercase mb-1">Customer '+(i+1)+'</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" onclick="myFunction()">Next Customer</a><a class="dropdown-item" href="#">Add note</a></div></div></div><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-s h7 mb-0 text-gray-800">Name: '+entry[i].name+'</div><div class="text-s h7 mb-0 text-gray-800">Type of service: '+entry[i].service+'</div><div class="text-s h7 mb-0 text-gray-800">Ticket Number: '+entry[i].ticket+' '+entry[i].counter+'</div></div></div></div></div></div>';
+
+      row.appendChild(newItems);
+    }
+    tix.appendChild(row);
+    mainrow.appendChild(tix);
+  });
+
+
 function myFunction() {
-  // document.getElementById("note").innerHTML = "Hello World";
-  alert("scrv")
+  console.log("clickedddd")
+  var list = document.getElementById("user_card_row");
+  list.removeChild(list.childNodes[1]);
+
+
 }
 </script>
-
 </body>
-
 </html>
