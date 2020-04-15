@@ -266,7 +266,24 @@ fetch('http://34.87.233.248:5000/show/alltickets')
 function myFunction() {
   console.log("clickedddd")
   var list = document.getElementById("user_card_row");
-  list.removeChild(list.childNodes[1]);
+  var findtix = list.childNodes[1].innerHTML;
+  console.log(findtix)
+  let tag = findtix.match(/Ticket Number: (.*) /);
+  console.log(tag[1])
+
+  fetch('http://34.87.233.248:5000/queue/'+tag[1].toString(), {
+    method: 'DELETE',
+  })
+  .then((response) => {
+    if (!response.ok){
+      alert("NO SUCH TICKET");
+      return
+    }
+    return response.json();
+  })
+  .then((data) => {
+    list.removeChild(list.childNodes[1]);
+  });  
 
 
 }

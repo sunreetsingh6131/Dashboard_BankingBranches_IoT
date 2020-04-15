@@ -7,7 +7,7 @@ Chart.defaults.global.defaultFontColor = '#858796';
 //http://0.0.0.0:5000/show/alltickets
 
 
-fetch('http://0.0.0.0:5000/show/feedback')
+fetch('http://34.87.233.248:5000/show/feedback')
   .then((response) => {
     return response.json();
   })
