@@ -28,6 +28,7 @@ conn = sqlite3.connect('data.db')
 cur = conn.cursor()
 #cur.execute('Drop table customers')
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
+cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, email varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
 conn.commit()
@@ -88,6 +89,7 @@ class Collections(Resource):
 					break
 
 			df.to_sql('dynamic_queue', if_exists='append', con=conn)
+			df.to_sql('analytics', if_exists='append', con=conn)
 			conn.commit()
 
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
@@ -189,6 +191,61 @@ class GetInfo(Resource):
 			tickets.append(task)
 		#conn.commit()
 		res = {"alltickets":tickets}
+		conn.close()
+
+		return res, 200
+
+@api.route('/show/logs', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
+
+		cur.execute('select * from analytics')
+		result = cur.fetchall()
+
+		if result == []:
+			task={
+				"Error": "empty queue"
+			}
+			return task, 404
+
+		lengthoflogs = len(result)
+
+		cur.execute('select * from analytics where counter= "A"')
+		result = cur.fetchall()
+		lengthofloans = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "B"')
+		result = cur.fetchall()
+		lengthofaccounts = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "C"')
+		result = cur.fetchall()
+		lengthofcheques = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "D"')
+		result = cur.fetchall()
+		lengthofexchange = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "E"')
+		result = cur.fetchall()
+		lengthofgeneral = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "F"')
+		result = cur.fetchall()
+		lengthofatm = (len(result)/lengthoflogs)*100
+
+
+		res = {
+			"total" : str(lengthoflogs),
+			"accounts":str(lengthofaccounts),
+			"loans":str(lengthofloans),
+			"exchange":str(lengthofexchange),
+			"general":str(lengthofgeneral),
+			"atm":str(lengthofatm),
+			"cheques":str(lengthofcheques)
+		}
 		conn.close()
 
 		return res, 200
