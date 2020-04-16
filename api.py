@@ -43,6 +43,7 @@ conn.close()
 class Collections(Resource):
 	
 	def post(self):
+		print("in post")
 		if request.args.get('queue_data') != None:
 			data = request.args.get('queue_data')
 			print(data)
@@ -141,8 +142,17 @@ class Collections(Resource):
 			temp_df = pd.read_sql('select * from feedbacks', con=conn)
 			print(temp_df)
 			conn.close()
+
+			res ={
+				"Feedback": "received"
+				}
 			return 200
 
+		else:
+			res={
+				"Error": "Incorrect input"
+			}
+			return res, 404
 
 @api.route('/queue/<ticket>', methods=['DELETE'])
 class delete(Resource):
