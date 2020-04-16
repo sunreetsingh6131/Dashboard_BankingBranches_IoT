@@ -29,7 +29,7 @@ cur = conn.cursor()
 #cur.execute('Drop table customers')
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
-cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, email varchar, password varchar)')
+cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
 conn.commit()
 conn.close()
@@ -37,7 +37,7 @@ conn.close()
 
 @api.route('/queue', methods=['POST'])
 @api.doc(params={'queue_data': 'sample :- {\"name\": \"blah\", \"customer_id\": \"blah\", \"service\": \"nameofservice\"} \n services =[accounts, loans, exchange, atm, cheques, general]'})
-@api.doc(params={'customer_data': 'ex.{\"name\": \"blah\", \"email\": \"blah\", \"password\": \"blah\"}'})
+@api.doc(params={'customer_data': 'ex.{\"name\": \"blah\", \"password\": \"blah\"}'})
 @api.doc(params={'feedback_data': 'ex.{\"customer_id\": \"blah\", \"feedback\": \"Poor/Okay/Good/Excellent/Outstanding\"}'})
 
 class Collections(Resource):
