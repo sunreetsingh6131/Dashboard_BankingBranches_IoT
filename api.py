@@ -43,7 +43,6 @@ conn.close()
 class Collections(Resource):
 	
 	def post(self):
-		print("in post")
 		if request.args.get('queue_data') != None:
 			data = request.args.get('queue_data')
 			print(data)
@@ -303,6 +302,30 @@ class GetInfo(Resource):
 		conn.close()
 
 		return res, 200
+
+@api.route('/auth', methods=['POST'])
+@api.doc(params={'customer_id': 'Ex. 55555'})
+@api.doc(params={'password': 'Ex. Pass123'})
+class authenticate(Resource):
+	def post(self):
+		password = request.args.get('customer_id')
+		username = request.args.get('password')
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
+		cur.execute("select * from customers where password='"+str(password)+"' and customer_id='"+str(username)+"'")
+		result = cur.fetchall()
+
+		if result == []:
+			res = {
+					"Error": "Invalid customer ID or password"
+				}	
+			return res, 404
+		else:
+			res={
+					"statusOK" : "Access can be granted"
+				}
+			return res, 200
+
 
 def GenerateCustomerId():
 	return randint(10000, 99999)
