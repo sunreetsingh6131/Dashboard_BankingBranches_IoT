@@ -184,6 +184,8 @@ class delete(Resource):
 @api.route('/show/servedpeople', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
+		global num_people_served
+		print(num_people_served)
 		res ={
 			"num_people_served": str(num_people_served)
 		}
