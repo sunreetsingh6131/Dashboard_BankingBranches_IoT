@@ -13,12 +13,15 @@ from random import randint
 #from pandas.io.json import json_normalize
 
 #counters numbers
+#http://34.87.233.248:5000
+
 LOANS='A'
 ACCOUNTS='B'
 CHEQUES='C'
 EXCHANGE='D'
 GENERAL_INFO='E'
 ATM='F'
+num_people_served = 0;
 
 app = Flask(__name__)
 CORS(app)
@@ -31,6 +34,7 @@ cur.execute('create table if not exists dynamic_queue (`index` int, name varchar
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
+
 conn.commit()
 conn.close()
 
@@ -156,6 +160,7 @@ class Collections(Resource):
 @api.route('/queue/<ticket>', methods=['DELETE'])
 class delete(Resource):
 	def delete(self, ticket):
+
 		conn = sqlite3.connect('data.db')
 		cur = conn.cursor()
 
@@ -170,9 +175,19 @@ class delete(Resource):
 
 		cur.execute('Delete from dynamic_queue where ticket ='+ticket)
 		conn.commit()
+		num_people_served = num_people_served +1;
 		conn.close()
 
-		return 200
+		return res, 200
+
+@api.route('/show/servedpeople', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		res ={
+			"num_people_served": str(num_people_served)
+		}
+
+		return res, 200
 
 @api.route('/show/alltickets', methods=['GET'])
 class GetInfo(Resource):

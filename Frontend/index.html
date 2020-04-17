@@ -109,6 +109,22 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">People Served Today</div>
+                      <div id="srvd.people" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="far fa-users fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           
           </div>
 
@@ -260,7 +276,7 @@ fetch('http://34.87.233.248:5000/show/alltickets')
     for (i = 0; i < data['alltickets'].length; i++) { 
       var entry = data['alltickets']
       var newItems = document.createElement('div');
-      newItems.innerHTML = '<div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-primary shadow h-100 py-2" style="width:290px"><div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer '+(i+1)+'</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" onclick="myFunction()">Next Customer</a><a class="dropdown-item" href="#">Add note</a></div></div></div><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-s h7 mb-0 text-gray-800">Name: '+entry[i].name+'</div><div class="text-s h7 mb-0 text-gray-800">Type of service: '+entry[i].service+'</div><div class="text-s h7 mb-0 text-gray-800">Ticket Number: '+entry[i].ticket+' '+entry[i].counter+'</div></div></div></div></div></div>';
+      newItems.innerHTML = '<div class="col-xl-3 col-md-6 mb-4"><div class="card border-left-primary shadow h-100 py-2" style="width:290px"><div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"><h6 class="text-s font-weight-bold text-primary text-uppercase mb-1">Customer '+(i+1)+'</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" onclick="myFunction('+(i+1)+')">Next Customer</a><a class="dropdown-item" href="#">Add note</a></div></div></div><div class="card-body"><div class="row no-gutters align-items-center"><div class="col mr-2"><div class="text-s h7 mb-0 text-gray-800">Name: '+entry[i].name+'</div><div class="text-s h7 mb-0 text-gray-800">Type of service: '+entry[i].service+'</div><div class="text-s h7 mb-0 text-gray-800">Ticket Number: '+entry[i].ticket+' '+entry[i].counter+'</div></div></div></div></div></div>';
 
       row.appendChild(newItems);
     }
@@ -269,43 +285,55 @@ fetch('http://34.87.233.248:5000/show/alltickets')
   });
 
 
+fetch('http://34.87.233.248:5000/show/servedpeople')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    document.getElementById('srvd_people').innerHTML = data.num_people_served;
+  });
+
 fetch('http://34.87.233.248:5000/show/logs')
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     var temp = document.getElementById('lonPerc');
-    temp.innerHTML = data.loans
+    var temp2 = parseInt(data.loans)
+    temp.innerHTML = temp2+"%"
     document.getElementById("lonPerc1").style.width = data.loans+'%';
 
     temp = document.getElementById('accPerc');
-    temp.innerHTML = data.accounts
-    var temp2 = parseInt(data.accounts)
-    console.log('temp2'+'%')
+    temp2 = parseInt(data.accounts)
+    temp.innerHTML = temp2+"%"
     document.getElementById("accPerc1").style.width = temp2+"%";
     
     temp = document.getElementById('genPerc');
-    temp.innerHTML = data.general
+    var temp2 = parseInt(data.general)
+    temp.innerHTML = temp2+"%"
     document.getElementById("genPerc1").style.width = data.general+'%';
     
     temp = document.getElementById('chqPerc');
-    temp.innerHTML = data.cheques
+    var temp2 = parseInt(data.cheques)
+    temp.innerHTML = temp2+"%"
     document.getElementById("chqPerc1").style.width = data.cheques+'%';
     
     temp = document.getElementById('atmPerc');
-    temp.innerHTML = data.atm
+    var temp2 = parseInt(data.atm)
+    temp.innerHTML = temp2+"%"
     document.getElementById("atmPerc1").style.width = data.atm+'%';
     
     temp = document.getElementById('excPerc');
-    temp.innerHTML = data.exchange
+    var temp2 = parseInt(data.exchange)
+    temp.innerHTML = temp2+"%"
     document.getElementById("excPerc1").style.width = data.exchange+'%';
 
   });
 
-function myFunction() {
-  console.log("clickedddd")
+function myFunction(key) {
+  console.log(key)
   var list = document.getElementById("user_card_row");
-  var findtix = list.childNodes[1].innerHTML;
+  var findtix = list.childNodes[key].innerHTML;
   console.log(findtix)
   let tag = findtix.match(/Ticket Number: (.*) /);
   console.log(tag[1])
@@ -321,8 +349,10 @@ function myFunction() {
     return response.json();
   })
   .then((data) => {
-    list.removeChild(list.childNodes[1]);
-  });  
+    list.removeChild(list.childNodes[key]);
+    window.location.reload(true); 
+  });
+
 
 
 // http://34.87.233.248:3000
