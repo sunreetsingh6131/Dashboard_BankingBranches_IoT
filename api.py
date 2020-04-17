@@ -175,10 +175,10 @@ class delete(Resource):
 
 		cur.execute('Delete from dynamic_queue where ticket ='+ticket)
 		conn.commit()
-		num_people_served = num_people_served +1;
 		conn.close()
-
-		return res, 200
+		num_people_served = num_people_served +1;
+		
+		return 200
 
 @api.route('/show/servedpeople', methods=['GET'])
 class GetInfo(Resource):
