@@ -176,6 +176,7 @@ class delete(Resource):
 		cur.execute('Delete from dynamic_queue where ticket ='+ticket)
 		conn.commit()
 		conn.close()
+		global num_people_served
 		num_people_served = num_people_served +1;
 		
 		return 200
