@@ -109,6 +109,22 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">People Served Today</div>
+                      <div id="srvd.people" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="far fa-users fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           
           </div>
 
@@ -269,35 +285,51 @@ fetch('http://34.87.233.248:5000/show/alltickets')
   });
 
 
+var srvd = document.getElementById('srvd.people')
+fetch('http://34.87.233.248:5000/show/servedpeople')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data)
+    console.log(data.num_people_served)
+    console.log(srvd.innerHTML)
+    srvd.innerHTML = data.num_people_served;
+  });
+
 fetch('http://34.87.233.248:5000/show/logs')
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     var temp = document.getElementById('lonPerc');
-    temp.innerHTML = data.loans
+    var temp2 = parseInt(data.loans)
+    temp.innerHTML = temp2+"%"
     document.getElementById("lonPerc1").style.width = data.loans+'%';
 
     temp = document.getElementById('accPerc');
-    temp.innerHTML = data.accounts
-    var temp2 = parseInt(data.accounts)
-    console.log('temp2'+'%')
+    temp2 = parseInt(data.accounts)
+    temp.innerHTML = temp2+"%"
     document.getElementById("accPerc1").style.width = temp2+"%";
     
     temp = document.getElementById('genPerc');
-    temp.innerHTML = data.general
+    var temp2 = parseInt(data.general)
+    temp.innerHTML = temp2+"%"
     document.getElementById("genPerc1").style.width = data.general+'%';
     
     temp = document.getElementById('chqPerc');
-    temp.innerHTML = data.cheques
+    var temp2 = parseInt(data.cheques)
+    temp.innerHTML = temp2+"%"
     document.getElementById("chqPerc1").style.width = data.cheques+'%';
     
     temp = document.getElementById('atmPerc');
-    temp.innerHTML = data.atm
+    var temp2 = parseInt(data.atm)
+    temp.innerHTML = temp2+"%"
     document.getElementById("atmPerc1").style.width = data.atm+'%';
     
     temp = document.getElementById('excPerc');
-    temp.innerHTML = data.exchange
+    var temp2 = parseInt(data.exchange)
+    temp.innerHTML = temp2+"%"
     document.getElementById("excPerc1").style.width = data.exchange+'%';
 
   });
