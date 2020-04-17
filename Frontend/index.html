@@ -290,6 +290,8 @@ fetch('http://34.87.233.248:5000/show/servedpeople')
     return response.json();
   })
   .then((data) => {
+    console.log(data)
+    console.log(data.num_people_served)
     document.getElementById('srvd_people').innerHTML = data.num_people_served;
   });
 
