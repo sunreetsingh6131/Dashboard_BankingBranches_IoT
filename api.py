@@ -332,7 +332,7 @@ class authenticate(Resource):
 		cur = conn.cursor()
 		cur.execute("select * from customers where password='"+str(password)+"' and customer_id='"+str(username)+"'")
 		result = cur.fetchall()
-
+		print(result)
 		if result == []:
 			res = {
 					"Error": "Invalid customer ID or password"
