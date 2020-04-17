@@ -211,7 +211,44 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/demo/chart-bar-demo.js"></script>
+  <script>
+  fetch('http://34.87.233.248:5000/show/logs')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    var temp = document.getElementById('lonPerc');
+    var temp2 = parseInt(data.loans)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("lonPerc1").style.width = data.loans+'%';
 
+    temp = document.getElementById('accPerc');
+    temp2 = parseInt(data.accounts)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("accPerc1").style.width = temp2+"%";
+    
+    temp = document.getElementById('genPerc');
+    var temp2 = parseInt(data.general)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("genPerc1").style.width = data.general+'%';
+    
+    temp = document.getElementById('chqPerc');
+    var temp2 = parseInt(data.cheques)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("chqPerc1").style.width = data.cheques+'%';
+    
+    temp = document.getElementById('atmPerc');
+    var temp2 = parseInt(data.atm)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("atmPerc1").style.width = data.atm+'%';
+    
+    temp = document.getElementById('excPerc');
+    var temp2 = parseInt(data.exchange)
+    temp.innerHTML = temp2+"%"
+    document.getElementById("excPerc1").style.width = data.exchange+'%';
+
+  });
+  </script>
 
 </body>
 
