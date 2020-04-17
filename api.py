@@ -326,8 +326,8 @@ class GetInfo(Resource):
 @api.doc(params={'password': 'Ex. Pass123'})
 class authenticate(Resource):
 	def post(self):
-		password = request.args.get('customer_id')
-		username = request.args.get('password')
+		password = request.args.get('password')
+		username = request.args.get('customer_id')
 		print(password)
 		print(username)
 		conn = sqlite3.connect('data.db')
