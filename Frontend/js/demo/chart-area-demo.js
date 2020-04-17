@@ -124,8 +124,8 @@ type: 'line',
 data: {
 labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
 datasets: [{
-  label: "My First dataset",
-  data: [65, 59, 80, 81, 56, 55, 40],
+  label: "Loans",
+  data: [47, 37, 33, 34, 21],
   backgroundColor: [
   'rgba(105, 0, 132, .2)',
   ],
@@ -144,8 +144,8 @@ datasets: [{
       pointHitRadius: 10,
   },
   {
-  label: "My Second dataset",
-  data: [28, 48, 40, 19, 86, 27, 90],
+  label: "ATM",
+  data: [69, 75, 61, 53, 58],
   backgroundColor: [
   'rgba(0, 137, 132, .2)',
   ],
@@ -165,8 +165,8 @@ datasets: [{
       pointHitRadius: 10,
   },
   {
-  label: "My third dataset",
-  data: [20, 40, 30, 10, 76, 17, 100],
+  label: "Accounts",
+  data: [38, 61, 46, 58, 66],
   backgroundColor: [
   'rgba(0, 137, 132, .2)',
   ],
