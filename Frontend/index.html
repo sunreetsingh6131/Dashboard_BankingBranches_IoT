@@ -116,7 +116,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">People Served Today</div>
-                      <div id="srvd.people" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <div id="srvd.people" class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                     </div>
                     <div class="col-auto">
                       <i class="far fa-users fa-2x text-gray-300"></i>
@@ -285,6 +285,7 @@ fetch('http://34.87.233.248:5000/show/alltickets')
   });
 
 
+var srvd = document.getElementById('srvd_people')
 fetch('http://34.87.233.248:5000/show/servedpeople')
   .then((response) => {
     return response.json();
@@ -292,7 +293,7 @@ fetch('http://34.87.233.248:5000/show/servedpeople')
   .then((data) => {
     console.log(data)
     console.log(data.num_people_served)
-    document.getElementById('srvd_people').innerHTML = data.num_people_served;
+    srvd.innerHTML = data.num_people_served;
   });
 
 fetch('http://34.87.233.248:5000/show/logs')
