@@ -28,6 +28,7 @@ fetch('http://34.87.233.248:5000/show/feedback')
           data: feebacksarray,
           backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#c81c5a', '#c88a1c'],
           hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#b41951', '#b47c19'],
+          hoverBackground: "&#128533;",
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },

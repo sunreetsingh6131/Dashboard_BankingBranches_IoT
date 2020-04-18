@@ -93,7 +93,7 @@
           <!-- Content Row -->
           <div class="row">      
 
-            <!-- Pending Requests Card Example -->
+            <!-- Customer in row Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -132,10 +132,8 @@
 
           <div class="card card-body shadow h-100 py-1 mb-4 ml-3 mr-3" id="user_card" style="max-height:275px;line-height:3em;overflow:scroll;padding:5px;">
 
-            <div class="row" id="user_card_row">  
-
-          </div>       
-        </div>
+            <div class="row" id="user_card_row">  </div>       
+          </div>
         </div>
  
         <!-- Content Row -->
@@ -263,7 +261,6 @@
 var tix = document.getElementById('user_card');
 var row = document.getElementById('user_card_row');
 var mainrow = document.getElementById('user_card_mainrow');
-
 var newItems = document.createElement('div');
 
 fetch('http://34.87.233.248:5000/show/alltickets')
@@ -357,13 +354,22 @@ function myFunction(key) {
     window.location.reload(true); 
   });
 
-
-
 // http://34.87.233.248:3000
 // http://34.87.233.248:5000
-
-
 }
+
+</script>
+
+</script type="text/JavaScript" src="jquery-3.5.0.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+    setInterval(function(){
+      $('#result').load('v');
+    }, 1000);
+  });
+
+
 </script>
 </body>
 </html>

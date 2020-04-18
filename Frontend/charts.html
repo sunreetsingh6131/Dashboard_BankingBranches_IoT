@@ -83,6 +83,7 @@
           <!-- Content Row -->
           <div class="row">
 
+            <!-- pie chart -->
           	<div class="col-xl-4 col-lg-5">
               <div class="card shadow mb-4" style="min-height: 95%">
                 <!-- Card Header - Dropdown -->
@@ -112,14 +113,44 @@
                     </span>
                   </div>
                 </div>
-                <!-- </div> -->
               </div>
             </div>
 
 
-            <div class="col-xl-8 col-lg-5">
-             <div class="card shadow mb-4" style="min-height: 60%">
-                <div class="card-header py-3 mb-4" style="min-height: 60%">
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-6" style="min-width: 60%">
+              <div class="card shadow mb-4" style="min-height: 95%">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Bank Service Analysis (Number of services/day)</h6>
+                </div>
+                <div class="card-body" style="min-height: 100%">
+                  <div class="chart-area" style="min-height: 100%">
+                    <canvas id="myAreaChart" style="max-height: 100%"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Line Chart -->
+            <div class="col-xl-8 col-lg-6" style="max-width: 50%">
+              <div class="card shadow mb-4" style="min-height: 95%">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">People per hour</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="barChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+            <!-- bar graph -->
+            <div class="col-xl-12 col-lg-5" style="max-width: 50%">
+             <div class="card shadow mb-4" style="min-height: 20%">
+                <div class="card-header py-3 mb-4">
                   <h6 class="m-0 font-weight-bold text-primary">Services</h6>
                 </div>
                 <div class="card-body">
@@ -152,19 +183,7 @@
             </div>
 
 
-            <div class="col-l-8 col-lg-6">
-              <!-- Area Chart -->
-              <div class="card shadow mb-4" style="min-height: 60%">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Time</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-            </div>
-            </div>
+
           </div>
         </div>
         <!-- /.container-fluid -->
