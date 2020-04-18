@@ -30,9 +30,9 @@ api = Api(app)
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
 cur.execute('Drop table customers')
-cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
+cur.execute('create table if not exists dynamic_queue (`index` int, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
-cur.execute('create table if not exists customers (`index` int, customer_id varchar, password varchar)')
+cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
 
 conn.commit()
@@ -62,12 +62,10 @@ class Collections(Resource):
 
 			# check for none as well..................
 			# for i in indexes:
-			# 	cust = df['customer_id'][0]
-			# 	cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
-			# 	result = cur.fetchall()
-			# 	for i in result:
-			# 		df['name'] = result[0][1]
-
+			 cust = df['customer_id'][0]
+			cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
+			result = cur.fetchall()
+			df['name'] = result[0][1]
 
 			while True:
 				ticket_generator = GenerateTicket()
