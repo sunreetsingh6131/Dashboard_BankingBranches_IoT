@@ -60,13 +60,13 @@ class Collections(Resource):
 			cur = conn.cursor()
 
 			for i in indexes:
-				cust = df['customer_id'][0])
+				cust = df['customer_id'][0]
 				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
 				result = cur.fetchall()
 				for i in result:
 					print(result)
 					print(result['name'])
-					
+
 					#df['name'] = result[]
 
 				#df['name']
