@@ -29,7 +29,7 @@ api = Api(app)
 
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
-#cur.execute('Drop table customers')
+cur.execute('Drop table customers')
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
@@ -40,7 +40,7 @@ conn.close()
 
 
 @api.route('/queue', methods=['POST'])
-@api.doc(params={'queue_data': 'sample :- {\"name\": \"blah\", \"customer_id\": \"blah\", \"service\": \"nameofservice\"} \n services =[accounts, loans, exchange, atm, cheques, general]'})
+@api.doc(params={'queue_data': 'sample :- {\"customer_id\": \"blah\", \"service\": \"nameofservice\"} \n services =[accounts, loans, exchange, atm, cheques, general]'})
 @api.doc(params={'customer_data': 'ex.{\"name\": \"blah\", \"password\": \"blah\"}'})
 @api.doc(params={'feedback_data': 'ex.{\"customer_id\": \"blah\", \"feedback\": \"Poor/Okay/Good/Excellent/Outstanding\"}'})
 
@@ -53,20 +53,20 @@ class Collections(Resource):
 			jsondata = json.loads(data)
 
 			df = pd.DataFrame(jsondata, index=[0])
-			print("here")
-			indexes = df[df['name'] == ''].index
+			# print("here")
+			# indexes = df[df['name'] == ''].index
 
 			conn = sqlite3.connect('data.db')
 			cur = conn.cursor()
 
 
 			# check for none as well..................
-			for i in indexes:
-				cust = df['customer_id'][0]
-				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
-				result = cur.fetchall()
-				for i in result:
-					df['name'] = result[0][1]
+			# for i in indexes:
+			# 	cust = df['customer_id'][0]
+			# 	cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
+			# 	result = cur.fetchall()
+			# 	for i in result:
+			# 		df['name'] = result[0][1]
 
 
 			while True:
