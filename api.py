@@ -64,7 +64,7 @@ class Collections(Resource):
 				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
 				result = cur.fetchall()
 				for i in result:
-					print(type(result[0]))
+					print(result[0][0])
 					#print(result['name'])
 
 					#df['name'] = result[]
