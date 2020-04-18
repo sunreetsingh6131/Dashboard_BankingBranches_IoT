@@ -53,9 +53,11 @@ class Collections(Resource):
 			jsondata = json.loads(data)
 
 			df = pd.DataFrame(jsondata, index=[0])
+			print("here")
+			print(df[df['name'] == ''].index)
 
-			if "" in df.name:
-				print("no name")
+			#if "" in df.name:
+			#	print("no name")
 
 
 			conn = sqlite3.connect('data.db')
@@ -291,7 +293,6 @@ class GetInfo(Resource):
 		
 		cur.execute('select * from feedbacks')
 		result = cur.fetchall()
-		print(result)
 		if result == []:
 			task={
 				"Error": "No Feedbacks Received Yet."
