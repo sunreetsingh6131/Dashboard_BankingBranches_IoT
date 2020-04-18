@@ -62,7 +62,7 @@ class Collections(Resource):
 
 			# check for none as well..................
 			# for i in indexes:
-			 cust = df['customer_id'][0]
+			cust = df['customer_id'][0]
 			cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
 			result = cur.fetchall()
 			df['name'] = result[0][1]
