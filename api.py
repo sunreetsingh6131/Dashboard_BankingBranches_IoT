@@ -54,7 +54,11 @@ class Collections(Resource):
 
 			df = pd.DataFrame(jsondata, index=[0])
 			print("here")
-			print(df[df['name'] == ''].index)
+			indexes = df[df['name'] == ''].index
+
+			for i in indexes:
+				print(i)
+				
 
 			#if "" in df.name:
 			#	print("no name")
