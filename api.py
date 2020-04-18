@@ -56,16 +56,21 @@ class Collections(Resource):
 			print("here")
 			indexes = df[df['name'] == ''].index
 
+			conn = sqlite3.connect('data.db')
+			cur = conn.cursor()
+
 			for i in indexes:
-				print(i)
-				
+				print(df['customer_id'])
+				print(df['customer_id'][0])
+				#cur.execute('select * from customers where customer_id = "'+df['name']+'"')
+				#df['name']
+
 
 			#if "" in df.name:
 			#	print("no name")
 
 
-			conn = sqlite3.connect('data.db')
-			cur = conn.cursor()
+			
 
 			while True:
 				ticket_generator = GenerateTicket()
