@@ -64,19 +64,8 @@ class Collections(Resource):
 				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
 				result = cur.fetchall()
 				for i in result:
-					print(result[0][1])
-					#print(result['name'])
+					df['name'] = result[0][1]
 
-					#df['name'] = result[]
-
-				#df['name']
-
-
-			#if "" in df.name:
-			#	print("no name")
-
-
-			
 
 			while True:
 				ticket_generator = GenerateTicket()
