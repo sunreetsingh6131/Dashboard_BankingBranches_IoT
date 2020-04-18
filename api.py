@@ -59,6 +59,8 @@ class Collections(Resource):
 			conn = sqlite3.connect('data.db')
 			cur = conn.cursor()
 
+
+			# check for none as well..................
 			for i in indexes:
 				cust = df['customer_id'][0]
 				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
