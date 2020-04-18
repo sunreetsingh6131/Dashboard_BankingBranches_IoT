@@ -54,6 +54,10 @@ class Collections(Resource):
 
 			df = pd.DataFrame(jsondata, index=[0])
 
+			if "" in df.name:
+				print("no name")
+
+
 			conn = sqlite3.connect('data.db')
 			cur = conn.cursor()
 
