@@ -24,8 +24,13 @@ type: 'line',
 data: {
 labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
 datasets: [{
+<<<<<<< HEAD
   label: "ATM",
   data: [65, 59, 80, 81, 56, 55, 40],
+=======
+  label: "Loans",
+  data: [47, 37, 33, 34, 21],
+>>>>>>> b4e812e6056ebd7070dc5b1fa8ff8b4c43f5e7f5
   backgroundColor: [
   'rgba(0, 130, 312, .1)',
   ],
@@ -44,8 +49,13 @@ datasets: [{
       pointHitRadius: 10,
   },
   {
+<<<<<<< HEAD
   label: "Accounts",
   data: [28, 48, 40, 19, 86, 27, 90],
+=======
+  label: "ATM",
+  data: [69, 75, 61, 53, 58],
+>>>>>>> b4e812e6056ebd7070dc5b1fa8ff8b4c43f5e7f5
   backgroundColor: [
   'rgba(246, 200, 62, .2)',
   ],
@@ -65,8 +75,13 @@ datasets: [{
       pointHitRadius: 10,
   },
   {
+<<<<<<< HEAD
   label: "Exchange",
   data: [20, 40, 30, 10, 76, 17, 100],
+=======
+  label: "Accounts",
+  data: [38, 61, 46, 58, 66],
+>>>>>>> b4e812e6056ebd7070dc5b1fa8ff8b4c43f5e7f5
   backgroundColor: [
   'rgba(28, 200, 138, .2)',
   ],

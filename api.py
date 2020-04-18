@@ -53,9 +53,19 @@ class Collections(Resource):
 			jsondata = json.loads(data)
 
 			df = pd.DataFrame(jsondata, index=[0])
+			print("here")
+			indexes = df[df['name'] == ''].index
 
 			conn = sqlite3.connect('data.db')
 			cur = conn.cursor()
+
+			for i in indexes:
+				cust = df['customer_id'][0]
+				cur.execute('select * from customers where customer_id = "'+str(cust)+'"')
+				result = cur.fetchall()
+				for i in result:
+					df['name'] = result[0][1]
+
 
 			while True:
 				ticket_generator = GenerateTicket()
@@ -287,7 +297,6 @@ class GetInfo(Resource):
 		
 		cur.execute('select * from feedbacks')
 		result = cur.fetchall()
-		print(result)
 		if result == []:
 			task={
 				"Error": "No Feedbacks Received Yet."
@@ -326,13 +335,19 @@ class GetInfo(Resource):
 @api.doc(params={'password': 'Ex. Pass123'})
 class authenticate(Resource):
 	def post(self):
-		password = request.args.get('customer_id')
-		username = request.args.get('password')
+		password = request.args.get('password')
+		username = request.args.get('customer_id')
+		print(password)
+		print(username)
 		conn = sqlite3.connect('data.db')
 		cur = conn.cursor()
-		cur.execute("select * from customers where password='"+str(password)+"' and customer_id='"+str(username)+"'")
+		cur.execute("select * from customers")
 		result = cur.fetchall()
-
+		print(result)
+		cur.execute("select * from customers where password='"+password+"' and customer_id='"+username+"'")
+		result = cur.fetchall()
+		cur.close()
+		print(result)
 		if result == []:
 			res = {
 					"Error": "Invalid customer ID or password"
