@@ -32,7 +32,7 @@ cur = conn.cursor()
 cur.execute('Drop table customers')
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
-cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
+cur.execute('create table if not exists customers (`index` int, customer_id varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
 
 conn.commit()
