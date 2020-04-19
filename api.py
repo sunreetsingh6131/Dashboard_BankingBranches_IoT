@@ -15,9 +15,7 @@ from pandas import read_csv
 from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.ar_model import ARResults
 import pytz
-#from pandas.io.json import json_normalize
 
-#counters numbers
 #http://34.87.233.248:5000
 
 LOANS='A'
@@ -35,7 +33,7 @@ api = Api(app)
 
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
-cur.execute('Drop table customers')
+cur.execute('Drop table dynamic_queue')
 cur.execute('create table if not exists dynamic_queue (`index` int, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
