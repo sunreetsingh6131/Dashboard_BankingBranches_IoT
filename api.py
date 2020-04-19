@@ -26,6 +26,7 @@ EXCHANGE='D'
 GENERAL_INFO='E'
 ATM='F'
 num_people_served = 0;
+mean_array = []
 
 app = Flask(__name__)
 CORS(app)
@@ -251,7 +252,7 @@ class GetInfo(Resource):
 		cur.execute('select * from analytics where counter= "A"')
 		result = cur.fetchall()
 		lengthofloans = (len(result)/lengthoflogs)*100
-
+		
 		cur.execute('select * from analytics where counter= "B"')
 		result = cur.fetchall()
 		lengthofaccounts = (len(result)/lengthoflogs)*100
@@ -362,14 +363,44 @@ class authenticate(Resource):
 @api.route('/show/predictions', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
-		mydates = pd.date_range(datetime.today(), periods=1000).tolist()
-		Loan = np.random.poisson(lam = 35, size = len(mydates))
-		Exchange = np.random.poisson(lam = 28, size = len(mydates))
-		ATM = np.random.poisson(lam = 68, size = len(mydates))
-		Accounts = np.random.poisson(lam = 54, size = len(mydates))
-		Cheques = np.random.poisson(lam = 68, size = len(mydates))
-		General = np.random.poisson(lam = 68, size = len(mydates))
+
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
 		
+		cur.execute('select * from analytics where counter= "A"')
+		result = cur.fetchall()
+		lengthofloans = (len(result)/lengthoflogs)*100
+		
+		cur.execute('select * from analytics where counter= "B"')
+		result = cur.fetchall()
+		lengthofaccounts = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "C"')
+		result = cur.fetchall()
+		lengthofcheques = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "D"')
+		result = cur.fetchall()
+		lengthofexchange = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "E"')
+		result = cur.fetchall()
+		lengthofgeneral = (len(result)/lengthoflogs)*100
+
+		cur.execute('select * from analytics where counter= "F"')
+		result = cur.fetchall()
+		lengthofatm = (len(result)/lengthoflogs)*100
+
+		cur.close()
+
+		mydates = pd.date_range(datetime.today(), periods=1000).tolist()
+		Loan = np.random.poisson(lam = int(lengthofloans), size = len(mydates))
+		Exchange = np.random.poisson(lam = int(lengthofexchange), size = len(mydates))
+		ATM = np.random.poisson(lam = int(lengthofatm), size = len(mydates))
+		Accounts = np.random.poisson(lam = int(lengthofaccounts), size = len(mydates))
+		Cheques = np.random.poisson(lam = int(lengthofcheques), size = len(mydates))
+		General = np.random.poisson(lam = int(lengthofgeneral), size = len(mydates))
+
 		df = pd.DataFrame(mydates)
 		df = df.rename(columns={0: "Date"})
 		df = pd.DataFrame(mydates)
