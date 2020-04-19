@@ -21,6 +21,9 @@ pip3 install statsmodels
 pip3 install pandas  
 pip3 install flaks_cors  
 
+## Dashboard Screenshots
+
+
 
 
 
