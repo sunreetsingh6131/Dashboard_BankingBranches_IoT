@@ -526,12 +526,29 @@ class GetInfo(Resource):
 		print("ALL TIMESTAMPS")
 		print(result)
 
-		cur.execute('select count(*) from timelog where time between "2020-04-19 04:00:00" AND "2020-04-19 04:02:00"')
-		result = cur.fetchall()
 		
+		#cur.execute('select count(*) from timelog where time between "2020-04-19 23:00:00" AND "2020-04-19 00:00:00"')
+		#result = cur.fetchall()
 
-
+		#timecount9 = result[0][0]
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 00:00:00" AND "2020-04-19 01:00:00"')
+		# result = cur.fetchall()
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 01:00:00" AND "2020-04-19 02:00:00"')
+		# result = cur.fetchall()
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 02:00:00" AND "2020-04-19 03:00:00"')
+		# result = cur.fetchall()
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 03:00:00" AND "2020-04-19 04:00:00"')
+		# result = cur.fetchall()
+		cur.execute('select count(*) from timelog where time between "2020-04-19 04:00:00" AND "2020-04-19 05:00:00"')
+		result = cur.fetchall()
 		print(result)
+		print(result[0])
+		print(result[0][0])
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 05:00:00" AND "2020-04-19 06:00:00"')
+		# result = cur.fetchall()
+		# cur.execute('select count(*) from timelog where time between "2020-04-19 06:00:00" AND "2020-04-19 07:00:00"')
+		# result = cur.fetchall()
+		
 
 		conn.close()
 		res={
