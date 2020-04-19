@@ -5,9 +5,9 @@ fetch('http://34.87.233.248:5000/show/logs')
   .then((response) => {
     return response.json();
   })
-  .then((databody) => {
+  .then((data) => {
+    console.log(data['time'])
     var ctx = document.getElementById("barChart").getContext('2d');
-
     var data = {
       labels: ["9:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00", "5:00"],
       datasets: [{
@@ -30,7 +30,7 @@ fetch('http://34.87.233.248:5000/show/logs')
           pointRadius: 4,
           pointHitRadius: 10,
           // notice the gap in the data and the spanGaps: false
-          data: databody['time'],
+          data: data['time'],
           spanGaps: false,
         }
       ]
