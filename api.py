@@ -108,11 +108,9 @@ class Collections(Resource):
 			conn.commit()
 
 			new_df=pd.DataFrame(columns=['time'])
-			d = datetime.now()
-			timezone = pytz.timezone("Europe/Berlin")
-			d_new = timezone.localize(d)
-			new_df.loc[0]= d_new
-			print(d_new)
+			time = pd.Timestamp.now(tz="Australia/Sydney")
+			new_df.loc[0]= time
+			print(time)
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
 			print(temp_df)
 
