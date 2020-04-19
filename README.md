@@ -23,7 +23,7 @@ pip3 install flaks_cors
 
 ## Dashboard Screenshots
 
-
+<img src="images">
 
 
 
