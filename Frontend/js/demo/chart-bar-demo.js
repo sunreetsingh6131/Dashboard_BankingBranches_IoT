@@ -34,28 +34,28 @@ fetch('http://34.87.233.248:5000/show/timelogs')
         }
       ]
     };
+    var options = {
+    scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  },
+                  scaleLabel: {
+                       display: true,
+                       labelString: 'No. of people',
+                       fontSize: 20 
+                    }
+              }]            
+          }  
+    };
+
+  // Chart declaration:
+    var myBarChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
   };
 
 
 // Notice the scaleLabel at the same level as Ticks
-var options = {
-  scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                },
-                scaleLabel: {
-                     display: true,
-                     labelString: 'No. of people',
-                     fontSize: 20 
-                  }
-            }]            
-        }  
-};
-
-// Chart declaration:
-var myBarChart = new Chart(ctx, {
-  type: 'line',
-  data: data,
-  options: options
-});
