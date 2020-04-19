@@ -38,7 +38,7 @@ api = Api(app)
 
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
-cur.execute('Drop table dynamic_queue')
+#cur.execute('Drop table dynamic_queue')
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
