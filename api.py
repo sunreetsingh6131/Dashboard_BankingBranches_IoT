@@ -527,7 +527,7 @@ class GetInfo(Resource):
 		print(result)
 
 		res={
-			"time" = "nothin to show yet"
+			"time" : "nothin to show yet"
 		}
 
 		return res, 200
