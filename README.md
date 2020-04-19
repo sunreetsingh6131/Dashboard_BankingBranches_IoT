@@ -23,7 +23,8 @@ pip3 install flaks_cors
 
 ## Dashboard Screenshots
 
-<img src="images">
+<img src="Images/Screen Shot 2020-04-19 at 11.12.27 pm.png">
+<img src="Images/Screen Shot 2020-04-19 at 11.12.49 pm.png">
 
 
 
