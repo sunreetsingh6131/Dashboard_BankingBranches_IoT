@@ -107,8 +107,8 @@ class Collections(Resource):
 			conn.commit()
 
 			new_df=pd.DataFrame(columns=['time'])
-			new_df.loc[0]= datetime.datetime.now()
-			print(datetime.datetime.now())
+			new_df.loc[0]= datetime.now()
+			print(datetime.now())
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
 			print(temp_df)
 
