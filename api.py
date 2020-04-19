@@ -367,6 +367,9 @@ class GetInfo(Resource):
 		Exchange = np.random.poisson(lam = 28, size = len(mydates))
 		ATM = np.random.poisson(lam = 68, size = len(mydates))
 		Accounts = np.random.poisson(lam = 54, size = len(mydates))
+		Cheques = np.random.poisson(lam = 68, size = len(mydates))
+		General = np.random.poisson(lam = 68, size = len(mydates))
+		
 		df = pd.DataFrame(mydates)
 		df = df.rename(columns={0: "Date"})
 		df = pd.DataFrame(mydates)
