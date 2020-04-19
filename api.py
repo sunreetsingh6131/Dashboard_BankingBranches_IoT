@@ -111,6 +111,9 @@ class Collections(Resource):
 			time = pd.Timestamp.now(tz="Australia/Sydney")
 			new_df.loc[0]= time
 			print(time)
+			new_df.to_sql('timelog', if_exists='append', con=conn)
+			conn.commit()
+
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
 			print(temp_df)
 
@@ -509,6 +512,22 @@ class GetInfo(Resource):
 			"Accounts": acc_list,
 			"Cheques": chq_list,
 			"General": gen_list
+		}
+
+		return res, 200
+
+@api.route('/show/timelogs', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		conn = sqlite3.connect('data.db')
+		cur = conn.cursor()
+		cur.execute('select * from timelog')
+		result = cur.fetchall()
+		print("ALL TIMESTAMPS")
+		print(result)
+
+		res={
+			"time" = "nothin to show yet"
 		}
 
 		return res, 200
