@@ -2,6 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = 'black';
 
+// FETCH PREDICTIONS FOR PREDICTION CHART
 var ctxL = document.getElementById("myAreaChart").getContext('2d');
 
 var options = {

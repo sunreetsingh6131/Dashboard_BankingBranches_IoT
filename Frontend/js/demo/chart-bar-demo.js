@@ -1,6 +1,8 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = 'black';
 
+// FETCH TIME LOGS FOR EACH HOUR (FOR CHART)
+
 fetch('http://34.87.233.248:5000/show/timelogs')
   .then((response) => {
     return response.json();

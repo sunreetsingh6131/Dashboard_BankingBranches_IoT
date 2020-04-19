@@ -16,7 +16,12 @@ from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.ar_model import ARResults
 import pytz
 
-#http://34.87.233.248:5000
+
+
+""" API FOR BLUETOOTH BEACON CONNECTIVITY FOR BANK BRANCHES VIA APP. """
+""" Connects mobile app to bank's dashboard for queue management and data collection for Analytics """
+""" API(in flask restplus) - http://34.87.233.248:5000 """
+""" DASHBOARD - http://34.87.233.248:3000 """
 
 LOANS='A'
 ACCOUNTS='B'
@@ -33,7 +38,7 @@ api = Api(app)
 
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
-#cur.execute('Drop table dynamic_queue')
+
 cur.execute('create table if not exists dynamic_queue (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
@@ -42,6 +47,21 @@ cur.execute('create table if not exists timelog (`index` int, time timestamp)')
 conn.commit()
 conn.close()
 
+
+
+"""
+	endpoint '/queue' with POST statements for API.
+	
+	Takes three different query parameters taking string in JSON format
+	1) queue_data : Adds customer to Queue. Returns JSON object with ticket number and counter number. 
+				sample example =  {"customer_id": "11472", "service": "loans"}
+
+	2) customer_data : Adds customer to database(like signup) and returns json object with unique customer_id
+				sample example =  {"name": "John Smith", "password": "password123"}
+
+	3) feedback_data : Adds feedback to database.
+				sample example =  {"customer_id": "11472", "feedback": "Good"}
+"""
 
 @api.route('/queue', methods=['POST'])
 @api.doc(params={'queue_data': 'sample :- {\"customer_id\": \"blah\", \"service\": \"nameofservice\"} \n services =[accounts, loans, exchange, atm, cheques, general]'})
@@ -173,6 +193,14 @@ class Collections(Resource):
 			}
 			return res, 404
 
+
+"""
+	endpoint '/queue/{id}' with DELETE statement for API.
+	
+	Deletes the customer from the queue when customer representative has served the customer.
+	
+"""
+
 @api.route('/queue/<ticket>', methods=['DELETE'])
 class delete(Resource):
 	def delete(self, ticket):
@@ -197,6 +225,13 @@ class delete(Resource):
 		
 		return 200
 
+
+"""
+	endpoint '/show/servedpeople' with GET statement for API.
+	
+	Gets info about number of people dealt with on that day. Returns them in JSON format.
+
+"""
 @api.route('/show/servedpeople', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
@@ -208,6 +243,12 @@ class GetInfo(Resource):
 
 		return res, 200
 
+"""
+	endpoint '/show/alltickets' with GET statement for API.
+	
+	Gets all the active tickets. Returns them in JSON format.
+	
+"""
 @api.route('/show/alltickets', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
@@ -237,6 +278,13 @@ class GetInfo(Resource):
 		conn.close()
 
 		return res, 200
+
+"""
+	endpoint '/show/logs' with GET statement for API.
+	
+	Gets count of customers that visited particular counter. returns the counts in JSON format.
+	
+"""
 
 @api.route('/show/logs', methods=['GET'])
 class GetInfo(Resource):
@@ -294,6 +342,12 @@ class GetInfo(Resource):
 		return res, 200
 
 
+"""
+	endpoint '/show/feedback' with GET statement for API.
+	
+	Gets all the feedback given by customers. returns the counts in JSON format.
+	
+"""
 @api.route('/show/feedback', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
@@ -336,6 +390,14 @@ class GetInfo(Resource):
 
 		return res, 200
 
+
+"""
+	endpoint '/auth' with POST statement for API.
+	
+	Authorises the login on app. returns success/error as response.
+	Takes two query paramters, 'customer_id' and 'password'
+
+"""
 @api.route('/auth', methods=['POST'])
 @api.doc(params={'customer_id': 'Ex. 55555'})
 @api.doc(params={'password': 'Ex. Pass123'})
@@ -366,6 +428,13 @@ class authenticate(Resource):
 			return res, 200
 
 
+"""
+	endpoint '/show/predictions' with GET statement for API.
+	
+	Gets all the predictions about busyness week around with 95% Confidence Interval. 
+	returns the prediction counts in JSON format.
+	
+"""
 @api.route('/show/predictions', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
@@ -514,6 +583,13 @@ class GetInfo(Resource):
 
 		return res, 200
 
+
+"""
+	endpoint '/show/timelogs' with GET statement for API.
+	
+	Gets all the enteries timestamp of all customers. returns the count of people in branch for particular hour in JSON format.
+	
+"""
 @api.route('/show/timelogs', methods=['GET'])
 class GetInfo(Resource):
 	def get(self):
