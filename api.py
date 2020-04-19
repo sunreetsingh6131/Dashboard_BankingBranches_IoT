@@ -558,8 +558,6 @@ class GetInfo(Resource):
 		timecount16 = result[0][0]
 		timelist.append(timecount16)
 		
-
-
 		conn.close()
 		res={
 			"time" : timelist
