@@ -366,6 +366,17 @@ class GetInfo(Resource):
 
 		conn = sqlite3.connect('data.db')
 		cur = conn.cursor()
+
+		cur.execute('select * from analytics')
+		result = cur.fetchall()
+
+		if result == []:
+			task={
+				"Error": "empty queue"
+			}
+			return task, 404
+
+		lengthoflogs = len(result)
 		
 		cur.execute('select * from analytics where counter= "A"')
 		result = cur.fetchall()
