@@ -6,20 +6,20 @@ Dashboard - http://34.87.233.248:3000
 ## Run the code
 
 - Run API : $ python3 api.py. 
-- Run Frontend : $ cd Frontend 
+- Run Frontend : $ cd Frontend <br /> 
 		 $ npm start 
 
 
 ## Installations
-pip3 install flask. 
-pip3 install flask-restplus. 
-pip3 install werkzeug~=0.16.1. 
-pip3 install requests. 
-npm install. 
-npm rebuild node-sass.  
-pip3 install statsmodels.  
-pip3 install pandas.  
-pip3 install flaks_cors.  
+pip3 install flask <br />
+pip3 install flask-restplus <br /> 
+pip3 install werkzeug~=0.16.1 <br /> 
+pip3 install requests <br /> 
+npm install <br /> 
+npm rebuild node-sass <br />  
+pip3 install statsmodels <br />  
+pip3 install pandas <br />  
+pip3 install flaks_cors <br />  
 
 
 
