@@ -39,7 +39,7 @@ cur.execute('create table if not exists dynamic_queue (`index` int, customer_id 
 cur.execute('create table if not exists analytics (`index` int, name varchar, customer_id varchar, service varchar, ticket varchar, counter varchar)')
 cur.execute('create table if not exists customers (`index` int, name varchar, customer_id varchar, password varchar)')
 cur.execute('create table if not exists feedbacks (`index` int, customer_id varchar, feedback varchar)')
-
+cur.execute('create table if not exists timelog (`index` int, time timestamp)')
 conn.commit()
 conn.close()
 
@@ -106,6 +106,9 @@ class Collections(Resource):
 			df.to_sql('analytics', if_exists='append', con=conn)
 			conn.commit()
 
+			new_df=pd.DataFrame(columns=['time'])
+			new_df.loc[0]= datetime.datetime.now()
+			print(datetime.datetime.now())
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
 			print(temp_df)
 
