@@ -16,10 +16,10 @@ pip3 install flask-restplus <br />
 pip3 install werkzeug~=0.16.1 <br /> 
 pip3 install requests <br /> 
 npm install <br /> 
-npm rebuild node-sass <br />  
-pip3 install statsmodels <br />  
-pip3 install pandas <br />  
-pip3 install flaks_cors <br />  
+npm rebuild node-sass   
+pip3 install statsmodels   
+pip3 install pandas  
+pip3 install flaks_cors  
 
 
 
