@@ -14,6 +14,7 @@ import numpy as np
 from pandas import read_csv
 from statsmodels.tsa.ar_model import AR
 from statsmodels.tsa.ar_model import ARResults
+import pytz
 #from pandas.io.json import json_normalize
 
 #counters numbers
@@ -107,8 +108,11 @@ class Collections(Resource):
 			conn.commit()
 
 			new_df=pd.DataFrame(columns=['time'])
-			new_df.loc[0]= datetime.now()
-			print(datetime.now())
+			d = datetime.now()
+			timezone = pytz.timezone("Australia/Sydney")
+			d_new = timezone.localize(d)
+			new_df.loc[0]= d_new
+			print(d_new)
 			temp_df = pd.read_sql('select * from dynamic_queue', con=conn)
 			print(temp_df)
 
