@@ -12,8 +12,8 @@ import json
 from random import randint
 import numpy as np
 from pandas import read_csv
-# from statsmodels.tsa.ar_model import AR
-# from statsmodels.tsa.ar_model import ARResults
+from statsmodels.tsa.ar_model import AR
+from statsmodels.tsa.ar_model import ARResults
 #from pandas.io.json import json_normalize
 
 #counters numbers
