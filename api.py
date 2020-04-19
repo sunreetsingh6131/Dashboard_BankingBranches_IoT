@@ -526,6 +526,11 @@ class GetInfo(Resource):
 		print("ALL TIMESTAMPS")
 		print(result)
 
+		cur.execute('select count(*) from timelog where time between = "2020-04-19 04:00:00" AND "2020-04-19 04:10:00"')
+		result = cur.fetchall()
+		print(result)
+		
+		conn.close()
 		res={
 			"time" : "nothin to show yet"
 		}
