@@ -12,8 +12,8 @@ import json
 from random import randint
 import numpy as np
 from pandas import read_csv
-# from statsmodels.tsa.ar_model import AR
-# from statsmodels.tsa.ar_model import ARResults
+from statsmodels.tsa.ar_model import AR
+from statsmodels.tsa.ar_model import ARResults
 #from pandas.io.json import json_normalize
 
 #counters numbers
@@ -359,109 +359,109 @@ class authenticate(Resource):
 			return res, 200
 
 
-# @api.route('/show/predictions', methods=['GET'])
-# class GetInfo(Resource):
-# 	def get(self):
-# 		mydates = pd.date_range(datetime.today(), periods=1000).tolist()
-# 		Loan = np.random.poisson(lam = 35, size = len(mydates))
-# 		Exchange = np.random.poisson(lam = 28, size = len(mydates))
-# 		ATM = np.random.poisson(lam = 68, size = len(mydates))
-# 		Accounts = np.random.poisson(lam = 54, size = len(mydates))
-# 		df = pd.DataFrame(mydates)
-# 		df = df.rename(columns={0: "Date"})
-# 		df = pd.DataFrame(mydates)
-# 		df = df.rename(columns={0: "Date"})
-# 		df['Exchange'] = Exchange
-# 		df['Loan'] = Loan
-# 		df ['ATM'] = ATM
-# 		df['Accounts'] = Accounts
-# 		df['Cheques'] = Cheques
-# 		df['General'] = General
+@api.route('/show/predictions', methods=['GET'])
+class GetInfo(Resource):
+	def get(self):
+		mydates = pd.date_range(datetime.today(), periods=1000).tolist()
+		Loan = np.random.poisson(lam = 35, size = len(mydates))
+		Exchange = np.random.poisson(lam = 28, size = len(mydates))
+		ATM = np.random.poisson(lam = 68, size = len(mydates))
+		Accounts = np.random.poisson(lam = 54, size = len(mydates))
+		df = pd.DataFrame(mydates)
+		df = df.rename(columns={0: "Date"})
+		df = pd.DataFrame(mydates)
+		df = df.rename(columns={0: "Date"})
+		df['Exchange'] = Exchange
+		df['Loan'] = Loan
+		df ['ATM'] = ATM
+		df['Accounts'] = Accounts
+		df['Cheques'] = Cheques
+		df['General'] = General
 
-# 		series = df[['Exchange']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['Exchange'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds = pd.DataFrame(predictions, columns = ['Exchange'])
+		series = df[['Exchange']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['Exchange'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds = pd.DataFrame(predictions, columns = ['Exchange'])
 
-# 		series = df[['Loan']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['Loan'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds['Loan'] = predictions
+		series = df[['Loan']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['Loan'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds['Loan'] = predictions
 
-# 		series = df[['ATM']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['ATM'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds['ATM'] = predictions
+		series = df[['ATM']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['ATM'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds['ATM'] = predictions
 
-# 		series = df[['Accounts']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['Accounts'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds['Accounts'] = predictions
+		series = df[['Accounts']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['Accounts'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds['Accounts'] = predictions
 
-# 		series = df[['Cheques']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['Cheques'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds['Cheques'] = predictions
+		series = df[['Cheques']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['Cheques'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds['Cheques'] = predictions
 
-# 		series = df[['General']]
-# 		X = difference(series.values)
-# 		model = AR(X)
-# 		model_fit = model.fit(maxlag=6, disp=False)
-# 		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
-# 		obs = series['General'].values.tolist()
-# 		obs = obs[-5:]
-# 		predictions = obs+predictions
-# 		predictions = predictions.astype(int)
-# 		preds['General'] = predictions
+		series = df[['General']]
+		X = difference(series.values)
+		model = AR(X)
+		model_fit = model.fit(maxlag=6, disp=False)
+		predictions = model_fit.predict(start=len(X), end=len(X)+4, dynamic = True)
+		obs = series['General'].values.tolist()
+		obs = obs[-5:]
+		predictions = obs+predictions
+		predictions = predictions.astype(int)
+		preds['General'] = predictions
 
-# 		exc_list = preds['Exchange'].to_list()
-# 		lon_list = preds['Loan'].to_list()
-# 		atm_list = preds['ATM'].to_list()
-# 		acc_list = preds['Accounts'].to_list()
-# 		chq_list = preds['Cheques'].to_list()
-# 		gen_list = preds['General'].to_list()
+		exc_list = preds['Exchange'].to_list()
+		lon_list = preds['Loan'].to_list()
+		atm_list = preds['ATM'].to_list()
+		acc_list = preds['Accounts'].to_list()
+		chq_list = preds['Cheques'].to_list()
+		gen_list = preds['General'].to_list()
 
-# 		print(preds)
-# 		res ={
-# 			"Exchange": exc_list,
-# 			"Loans": lon_list,
-# 			"ATM": atm_list,
-# 			"Accounts": acc_list,
-# 			"Cheques": chq_list,
-# 			"General": gen_list
-# 		}
+		print(preds)
+		res ={
+			"Exchange": exc_list,
+			"Loans": lon_list,
+			"ATM": atm_list,
+			"Accounts": acc_list,
+			"Cheques": chq_list,
+			"General": gen_list
+		}
 
-# 		return res, 200
+		return res, 200
 
 def difference(dataset):
 	diff = list()
