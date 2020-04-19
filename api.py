@@ -525,6 +525,10 @@ class GetInfo(Resource):
 		result = cur.fetchall()
 
 		timelist = []
+		cur.execute('select count(*) from timelog where time between "2020-04-19 22:00:00" AND "2020-04-19 23:00:00"')
+		result = cur.fetchall()
+		timecount8 = result[0][0]
+		timelist.append(timecount8)
 		cur.execute('select count(*) from timelog where time between "2020-04-19 23:00:00" AND "2020-04-19 00:00:00"')
 		result = cur.fetchall()
 		timecount9 = result[0][0]
