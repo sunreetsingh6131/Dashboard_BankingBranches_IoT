@@ -523,36 +523,46 @@ class GetInfo(Resource):
 		cur = conn.cursor()
 		cur.execute('select * from timelog')
 		result = cur.fetchall()
-		print("ALL TIMESTAMPS")
-		print(result)
 
-		
-		#cur.execute('select count(*) from timelog where time between "2020-04-19 23:00:00" AND "2020-04-19 00:00:00"')
-		#result = cur.fetchall()
-
-		#timecount9 = result[0][0]
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 00:00:00" AND "2020-04-19 01:00:00"')
-		# result = cur.fetchall()
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 01:00:00" AND "2020-04-19 02:00:00"')
-		# result = cur.fetchall()
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 02:00:00" AND "2020-04-19 03:00:00"')
-		# result = cur.fetchall()
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 03:00:00" AND "2020-04-19 04:00:00"')
-		# result = cur.fetchall()
+		timelist = []
+		cur.execute('select count(*) from timelog where time between "2020-04-19 23:00:00" AND "2020-04-19 00:00:00"')
+		result = cur.fetchall()
+		timecount9 = result[0][0]
+		timelist.append(timecount9)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 00:00:00" AND "2020-04-19 01:00:00"')
+		result = cur.fetchall()
+		timecount10 = result[0][0]
+		timelist.append(timecount10)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 01:00:00" AND "2020-04-19 02:00:00"')
+		result = cur.fetchall()
+		timecount11 = result[0][0]
+		timelist.append(timecount11)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 02:00:00" AND "2020-04-19 03:00:00"')
+		result = cur.fetchall()
+		timecount12 = result[0][0]
+		timelist.append(timecount12)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 03:00:00" AND "2020-04-19 04:00:00"')
+		result = cur.fetchall()
+		timecount13 = result[0][0]
+		timelist.append(timecount13)
 		cur.execute('select count(*) from timelog where time between "2020-04-19 04:00:00" AND "2020-04-19 05:00:00"')
 		result = cur.fetchall()
-		print(result)
-		print(result[0])
-		print(result[0][0])
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 05:00:00" AND "2020-04-19 06:00:00"')
-		# result = cur.fetchall()
-		# cur.execute('select count(*) from timelog where time between "2020-04-19 06:00:00" AND "2020-04-19 07:00:00"')
-		# result = cur.fetchall()
+		timecount14 = result[0][0]
+		timelist.append(timecount14)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 05:00:00" AND "2020-04-19 06:00:00"')
+		result = cur.fetchall()
+		timecount15 = result[0][0]
+		timelist.append(timecount15)
+		cur.execute('select count(*) from timelog where time between "2020-04-19 06:00:00" AND "2020-04-19 07:00:00"')
+		result = cur.fetchall()
+		timecount16 = result[0][0]
+		timelist.append(timecount16)
 		
+
 
 		conn.close()
 		res={
-			"time" : "nothin to show yet"
+			"time" : timelist
 		}
 
 		return res, 200
